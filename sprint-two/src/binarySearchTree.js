@@ -43,12 +43,12 @@ BSTmethods.contains = function(value){
     {
       if(value < tree.value)
       {
-        if(tree.left !== null) 
+        if(tree.left !== null)
           helper(tree.left, value);
       }
       else
       {
-        if(tree.right !== null) 
+        if(tree.right !== null)
           helper(tree.right, value);
       }
     }
@@ -60,6 +60,14 @@ BSTmethods.contains = function(value){
 };
 
 BSTmethods.depthFirstLog = function(callback){
+  callback(this.value);
+
+  console.log(this);
+
+  if(this.left !== null)
+    this.left.depthFirstLog(callback);
+  if(this.right !== null)
+    this.right.depthFirstLog(callback);
 
 }
 /*
