@@ -73,3 +73,7 @@ BSTmethods.depthFirstLog = function(callback){
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+
+//insert: O(log n) if balanced, otherwise O(n) if structured like LL
+//contains: same as above
+//depthfirst: O(n)
