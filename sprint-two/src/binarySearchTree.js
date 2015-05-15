@@ -62,8 +62,6 @@ BSTmethods.contains = function(value){
 BSTmethods.depthFirstLog = function(callback){
   callback(this.value);
 
-  console.log(this);
-
   if(this.left !== null)
     this.left.depthFirstLog(callback);
   if(this.right !== null)
