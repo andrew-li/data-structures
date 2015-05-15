@@ -1,7 +1,7 @@
 var BinarySearchTree = function(value){
   var mytree = {};
 
-  mytree.value = 0;
+  mytree.value = value;
   mytree.right = null;
   mytree.left = null;
 
@@ -20,8 +20,6 @@ var BSTmethods = {};
 BSTmethods.insert = function(value){
   var tree = BinarySearchTree(value);
 
-console.log(tree);
-
   if(value < this.value)
   {
     (this.left === null) ? (this.left = tree) : this.left.insert(value);
@@ -33,7 +31,32 @@ console.log(tree);
 };
 
 BSTmethods.contains = function(value){
+  var found = false;
 
+  var helper = function(tree, value){
+    if(tree.value === value)
+    {
+      found = true;
+      return;
+    }
+    else
+    {
+      if(value < tree.value)
+      {
+        if(tree.left !== null) 
+          helper(tree.left, value);
+      }
+      else
+      {
+        if(tree.right !== null) 
+          helper(tree.right, value);
+      }
+    }
+  }
+
+  helper(this, value);
+
+  return found;
 };
 
 BSTmethods.depthFirstLog = function(callback){
