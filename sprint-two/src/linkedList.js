@@ -34,8 +34,68 @@ var LinkedList = function(){
       tempNode = tempNode.next;
     }
     return false;
-
   };
+
+  list.update = function(target, value)
+  {
+    var tempNode = list.head;
+    while(tempNode){
+      if(tempNode.value === target){
+        tempNode.value = value;
+        return true;
+      }
+      tempNode = tempNode.next;
+    }
+    return false;
+  }
+
+  list.updateUsingKey = function(key, obj)
+  {
+    var tempNode = list.head;
+    while(tempNode){
+      if(tempNode.value.hasOwnProperty(key) === true){
+        tempNode.value = obj;
+        return true;
+      }
+      tempNode = tempNode.next;
+    }
+    return false;
+  }
+
+  list.deleteUsingKey = function(key)
+  {
+    var tempNode = list.head;
+    var prevNode = null;
+    while(tempNode){
+      if(tempNode.value.hasOwnProperty(key) === true){
+        if(tempNode === list.head){
+          list.head = tempNode.next;
+        }
+        if(tempNode === list.tail){
+          list.tail = prevNode;
+        }
+        if(prevNode !== null){ //checks if LL is empty
+          prevNode.next = tempNode.next;
+        }
+        return true;
+      }
+      prevNode = tempNode;
+      tempNode = tempNode.next;
+    }
+    return false;
+  }
+
+  list.findByKey = function(key)
+  {
+    var tempNode = list.head;
+    while(tempNode){
+      if(tempNode.value.hasOwnProperty(key) === true){
+        return tempNode.value[key];
+      }
+      tempNode = tempNode.next;
+    }
+    return null;
+  }
 
   return list;
 };

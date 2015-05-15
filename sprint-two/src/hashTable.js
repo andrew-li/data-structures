@@ -6,32 +6,46 @@ var HashTable = function(){
 HashTable.prototype.insert = function(k, v){
   var i = getIndexBelowMaxForKey(k, this._limit);
 
-  var insertObject = { k : v };
-  var insertArray = [];
-  //insertObject[k] = v;
-
-  if(retrieve) //no collision
+  if(this._storage.get(i) !== null) //no collision
   {
-    this._storage.set(i, v);
+    var insertList = LinkedList();
+    var objToInsert = {};
+    objToInsert[k] = v;
+    //insertList.addToTail(objToInsert);
+    this._storage.set(i, insertList);
+    this._storage.get(i).addToTail(objToInsert);
   }
-  else if()
+  else //there is a collision
   {
-
-  }
-  else //collision
-  {
-
+    if(this._storage.get(i).updateUsingKey(k, {k : v}) === false)
+    {
+      var objToInsert = {};
+      objToInsert[k] = v;
+      //insertList.addToTail(objToInsert); //old code
+      this._storage.get(i).addToTail(objToInsert); //trying to debug
+    }
   }
 };
 
 HashTable.prototype.retrieve = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  return this._storage.get(i);
+  if(this._storage.get(i) === null)
+    return null;
+  return this._storage.get(i).findByKey(k);
 };
 
 HashTable.prototype.remove = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  this._storage.set(i, null);
+  var removed = this._storage.get(i).deleteUsingKey(k);
+
+  if(removed === true
+    && this._storage.get(i)["head"] === null
+    && this._storage.get(i)["tail"] === null)
+  {
+    this._storage.set(i, null);
+  }
+
+  return removed;
 };
 
 
