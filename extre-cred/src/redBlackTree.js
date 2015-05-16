@@ -64,19 +64,48 @@ RedBlackTree.prototype.uncleOf = function(node) {
   return node !== null ? node.uncle() : null;
 };
 
-RedBlackTree.prototype.rotateLeft = function() {
+RedBlackTree.prototype.rotateLeft = function(node) {
+  if(node === null || node.isLeaf() || node.isNullLeaf())
+    return;
+
+  var x = node.right;
+  node.right = x.left;
+  x.left = node;
 };
 
-RedBlackTree.prototype.rotateRight = function() {
+RedBlackTree.prototype.rotateRight = function(node) {
+  if(node === null || node.isLeaf() || node.isNullLeaf())
+    return;
+
+  var x = node.left;
+  node.left = x.right;
+  x.right = node;
 };
+
+RedBlackTree.prototype.insertCase1 = function (node) {
+  if(node.parent === null) {
+    node.color = "black";
+  }
+  else {
+    this.insertCase2(node);
+  }
+};
+
+
 
 //red black tree primary functions
 
 RedBlackTree.prototype.insert = function(value) {
+  var newNode = new TreeNode(value);
+
   if(this.root === null) {
-    this.root = new TreeNode(value);
+    this.root = newNode;
     this.root.color = "black";
     this.root.appendNullLeaves();
+  }else {
+    // first perform a normal BT insertion
+    // then restructure
+    this.insertCase1(newNode);
   }
 };
 
