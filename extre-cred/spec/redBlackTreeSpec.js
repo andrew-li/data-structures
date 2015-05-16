@@ -1,4 +1,5 @@
 //r-b tree spec
+// visualization: https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
 
 describe('redBlackTree', function() {
   var redBlackTree;
