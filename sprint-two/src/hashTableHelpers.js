@@ -16,10 +16,14 @@ var LimitedArray = function(limit){
 
   var limitedArray = {};
   limitedArray.get = function(index){
+//console.log("LL get, storage:");
+//console.log(storage);
     checkLimit(index);
     return storage[index];
   };
   limitedArray.set = function(index, value){
+//console.log("LL set, storage:");
+//console.log(storage);
     checkLimit(index);
     storage[index] = value;
   };
@@ -27,6 +31,8 @@ var LimitedArray = function(limit){
     for(var i = 0; i < storage.length; i++){
       callback(storage[i], i, storage);
     }
+//console.log("LL each, storage:");
+//console.log(storage);
   };
 
   var checkLimit = function(index){
