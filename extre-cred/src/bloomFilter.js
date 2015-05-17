@@ -60,7 +60,7 @@ var BloomFilter = function(){
 BloomFilter.prototype.insert = function(value){
   for(var i = 0; i < this.k; i++) {
     var index = murmurhash2_32_gc(value, i) % 18;
-    console.log("i: " + i + " | index: " + index);
+    //console.log("i: " + i + " | index: " + index);
     this.bitArray[index] = 1;
   }
 };
