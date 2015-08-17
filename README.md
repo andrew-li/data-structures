@@ -1,7 +1,7 @@
 #data-structures
 This is a project I completed as a student at [hackreactor](http://hackreactor.com). This project was worked on with a pair.
 
-This repo contains implementations to the following data structures:
+This repo contains implementations to the following data structures:<br/>
 -stack<br/>
 -queue<br/>
 -linked list<br/>
