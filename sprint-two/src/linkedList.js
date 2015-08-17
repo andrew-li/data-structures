@@ -21,6 +21,9 @@ var LinkedList = function(){
     else{
       var temp = list.head.value;
       list.head = list.head.next;
+      if(list.head === null){
+        list.tail = null;
+      }    
       return temp;
     }
   };
